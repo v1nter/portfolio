@@ -1,4 +1,4 @@
-import ColorPicker from '../Colorpicker/Colorpicker.jsx';
+import ColorPicker from '../ColorPicker/ColorPicker.jsx';
 import Nav from '../Nav/Nav.jsx';
 import Kontakt from '../Kontakt/Kontakt.jsx';
 import Footer from '../Footer/Footer.jsx';
