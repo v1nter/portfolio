@@ -1,0 +1,10 @@
+:root {
+	/* Variablennamen der Farben*/
+
+	--primary-background-color: rgb(34, 34, 34);
+	--primary-link-color: rgb(255, 255, 255);
+
+	/* Variablennamen zum Beschreiben der Funktion */
+	--background-color: var(--primary-background-color);
+	--link-color: var(--primary-link-color);
+}
