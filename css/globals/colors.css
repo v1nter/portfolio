@@ -1,0 +1,16 @@
+/* $primary-background-color: rgb(34, 34, 34);
+$primary-font-color: aliceblue; */
+
+:root {
+	/* Farben definieren */
+	--dark-grey: rgb(34, 34, 34);
+	--white: rgb(255, 255, 255);
+	--violett: rgb(125, 0, 255);
+	--blue: rgb(40, 85, 170);
+	--green: rgb(0, 135, 120);
+
+	/* Funktionen definieren */
+	--primary-background-color: var(--dark-grey);
+	--primary-font-color: var(--white);
+	--active-link-color: var(--violett);
+}

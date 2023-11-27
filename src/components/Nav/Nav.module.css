@@ -1,0 +1,23 @@
+.nav {
+	> ul {
+		display: flex;
+		list-style: none;
+		gap: 2rem;
+		color: white;
+	}
+}
+
+.link {
+	color: var(--primary-font-color);
+	text-decoration: none;
+	font-size: 1.5rem;
+	text-transform: uppercase;
+
+	&:hover {
+		color: var(--active-link-color);
+	}
+
+	&:focus {
+		color: var(--active-link-color);
+	}
+}

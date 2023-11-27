@@ -1,0 +1,29 @@
+// Ideen:
+// 1. Slidereinstellungen via URL-Parameter teilbar machen
+// 2. Links eine Auswahl an Default-Konfigurationen anzeigen und durch Klicks auswählbar machen. Die Defaults sollten schon einen Gradienten anzeigen
+// 3. Beim Klick auf eine Kachel den RGB-Wert in Zwischenablage speichern, dabei Messagebox-Einblenden (geschmeidig animiert!!!) (css: popover)
+// 4. 52 Kacheln gleichmäßig auf ein Raster verteilen (4*13?)
+// 5. Slider und Tiles in eigene Komponenten auslagern
+
+// Weitere Elemente
+// 01. Burgermenü vertikal selbstprogrammieren
+// 02. Slider mit Kacheln als Menü horizontal
+// 03. Demoseite: Deutschlandkarte/API mit Hover und Informationen über Bundesländer (https://www.youtube.com/watch?v=z6PzPTxfgZM)
+// 04. Particle Cloud (Startseite als Hintergrund?)
+// 05. Gallerie mit eigenen Fotos
+// 06. Würfelanimation beim Wechseln der Seite (page transition https://www.youtube.com/watch?v=S4HYwsBRpRs)
+// 07. Navigation blurrt beim scrollen über den Content
+// 08. Quellcode anzeigen
+// 09. Startseite [Enter] mit Water-Ripple-Effekt beim Klicken und Auflösen/Vergrößern von Enter 
+// 10. Hire me
+// 11. Responsive Design
+// 12. Demoseite: Space Invaders
+// 13. Demoseite: Überlappende, schräg stehende Kacheln zum durchsliden mit "Aufstell"-Animation beim Hovern
+// 14. Demoseite: Animation Siebdruck/4-Farb-Druck/CMYK-Separation
+// 15. Demoseite: Blog/Artikelseite in verschiedenen Styles, umschaltbar durch Klicken oder Scrollen, mit Übergangsanimation (1. Style: passend zum Rest der Seite)
+// 16. Demoseite: Alternative Galerie: Wabenstruktur / Hexagone
+
+// Inspration Design:
+// https://www.framer.com/motion/
+
+// Three.js für 3D-Animationen

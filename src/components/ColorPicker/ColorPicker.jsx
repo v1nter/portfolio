@@ -1,12 +1,33 @@
 import { Fragment, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import css from './ColorPicker.module.css';
 
 // Ideen:
 // 1. Slidereinstellungen via URL-Parameter teilbar machen
-// 2. Links eine Auswahl an Default-Konfigurationen anzeigen und durch Klicks auswählbar machen
-// 3. Beim Klick auf eine Kachel den RGB-Wert in Zwischenablage speichern, dabei Messagebox-Einblenden (geschmeidig animiert!!!)
+// 2. Links eine Auswahl an Default-Konfigurationen anzeigen und durch Klicks auswählbar machen. Die Defaults sollten schon einen Gradienten anzeigen
+// 3. Beim Klick auf eine Kachel den RGB-Wert in Zwischenablage speichern, dabei Messagebox-Einblenden (geschmeidig animiert!!!) (css: popover)
 // 4. 52 Kacheln gleichmäßig auf ein Raster verteilen (4*13?)
 // 5. Slider und Tiles in eigene Komponenten auslagern
+
+// Weitere Elemente
+// 01. Burgermenü vertikal selbstprogrammieren
+// 02. Slider mit Kacheln als Menü horizontal
+// 03. Demoseite: Deutschlandkarte/API mit Hover und Informationen über Bundesländer (https://www.youtube.com/watch?v=z6PzPTxfgZM)
+// 04. Particle Cloud (Startseite als Hintergrund?)
+// 05. Gallerie mit eigenen Fotos
+// 06. Würfelanimation beim Wechseln der Seite (page transition https://www.youtube.com/watch?v=S4HYwsBRpRs)
+// 07. Navigation blurrt beim scrollen über den Content
+// 08. Quellcode anzeigen
+// 09. Startseite [Enter]
+// 10. Hire me
+// 11. Responsive Design
+// 12. Demoseite: Space Invaders
+// 13. Demoseite: Überlappende, schräg stehende Kacheln zum durchsliden mit "Aufstell"-Animation beim Hovern
+// 14. Demoseite: Animation Siebdruck/4-Farb-Druck/CMYK-Separation
+// 15. Demoseite: Blog/Artikelseite in verschiedenen Styles, umschaltbar durch Klicken oder Scrollen, mit Übergangsanimation (1. Style: passend zum Rest der Seite)
+
+// Inspration Design:
+// https://www.framer.com/motion/
 
 export default function Tiles() {
 	const startFormula = [
@@ -88,7 +109,7 @@ export default function Tiles() {
 				Der Gradient startet mit der ersten Tile und endet mit der letzten => Zwischenwerte werden berechnet */}
 
 			<div
-				className="color-control-wrapper"
+				className={css.colorControlWrapper}
 				style={{
 					'--gradient-starting-color': `${
 						tiles[0]
@@ -105,14 +126,14 @@ export default function Tiles() {
 				{/* Slider beeinflussen die States für r, g und b
 				Bei einer Änderung wird der State aktualisiert und dadurch
 				useEffect getriggert, welches die Kachelfarben neu berechnet */}
-				<div className="color-control">
+				<div className={css.colorControl}>
 					{colors.map((obj) => (
 						<>
 							<label key={obj.color + '-label'} htmlFor={`range-${obj.color}`}>
 								{obj.color}
 							</label>
 							<input
-								className="color-slider"
+								className={css.colorSlider}
 								type="range"
 								id={`range-${obj.color}`}
 								min="0"
@@ -134,7 +155,7 @@ export default function Tiles() {
 					))}
 
 					<button
-						className="color-button"
+						className={css.colorButton}
 						value={formula.find(({ color }) => color === 'r').color}
 						onClick={(e) => changeFormula(e.target.value, formula, setFormula)}
 					>
@@ -142,7 +163,7 @@ export default function Tiles() {
 					</button>
 
 					<button
-						className="color-button"
+						className={css.colorButton}
 						value={formula.find(({ color }) => color === 'g').color}
 						onClick={(e) => changeFormula(e.target.value, formula, setFormula)}
 					>
@@ -150,7 +171,7 @@ export default function Tiles() {
 					</button>
 
 					<button
-						className="color-button"
+						className={css.colorButton}
 						value={formula.find(({ color }) => color === 'b').color}
 						onClick={(e) => changeFormula(e.target.value, formula, setFormula)}
 					>
@@ -162,14 +183,13 @@ export default function Tiles() {
 			{/* Erzeugt mit .map() eine Schleife über das Tiles Array. 
 			Das Array enthält Objekte mit jeweils einer Wertekombination für r, g, b, 
 			Mit jedem Objekt wird ein Div erzeugt, dass die entsprechende rgb-Hintergrundfarbe besitzt */}
-
-			<div className="color-box">
+			<div className={css.colorBox}>
 				{tiles.map((tile) => (
 					<div
 						style={{
-							'--background-color': `rgb(${tile.r},${tile.g},${tile.b})`,
+							'--tile-color': `rgb(${tile.r},${tile.g},${tile.b})`,
 						}}
-						className="tile"
+						className={css.tile}
 						key={tile.id}
 						onClick={() => onTileClick(tile)}
 					>
@@ -222,9 +242,7 @@ function changeFormula(btn, formula, setFormula) {
 
 function onTileClick(tile) {
 	// Beim Klick auf eine Tile wird der Farbcode in die Zwischenablage kopiert und eine entsprechende
-	// Bestätigung ausgegeben
-	console.log(tile);
+	// Bestätigung als popup ausgegeben
 
-	// Copy the text inside the text field
 	navigator.clipboard.writeText(`rgb(${tile.r},${tile.g},${tile.b})`);
 }
