@@ -29,10 +29,7 @@ import css from './ColorPicker.module.css';
 // Inspration Design:
 // https://www.framer.com/motion/
 
-<<<<<<< HEAD
 export default function ColorPicker() {
-
->>>>>>> 7e25bd7305f9db71b95787513082d0c5c05e618a
 	const startFormula = [
 		{ color: 'r', formula: -1 },
 		{ color: 'g', formula: 1 },
