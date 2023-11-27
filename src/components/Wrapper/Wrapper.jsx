@@ -14,7 +14,7 @@ export default function Wrapper() {
 			<div className="site-content">
 				<Route path="/" component={Start} />
 				<Route path="/ColorPicker" component={ColorPicker} />
-				<Route path="/kontakt" component={Kontakt} />
+				<Route path="/hire-me" component={Kontakt} />
 			</div>
 			<div className="site-footer">
 				<Footer />

@@ -12,7 +12,7 @@
 // 04. Particle Cloud (Startseite als Hintergrund?)
 // 05. Gallerie mit eigenen Fotos
 // 06. Würfelanimation beim Wechseln der Seite (page transition https://www.youtube.com/watch?v=S4HYwsBRpRs)
-// 07. Navigation blurrt beim scrollen über den Content
+// 07. Navigation blurrt beim scrollen über den Content => Sticky Header
 // 08. Quellcode anzeigen
 // 09. Startseite [Enter] mit Water-Ripple-Effekt beim Klicken und Auflösen/Vergrößern von Enter 
 // 10. Hire me

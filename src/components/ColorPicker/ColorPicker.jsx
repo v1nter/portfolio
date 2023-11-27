@@ -1,6 +1,8 @@
 import { Fragment, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import css from './ColorPicker.module.css';
+import Popover from '../Popover/Popover';
+import { useDebouncedValue } from '../../hooks/useDebouncedValue';
 
 // Ideen:
 // 1. Slidereinstellungen via URL-Parameter teilbar machen
@@ -45,6 +47,8 @@ export default function ColorPicker() {
 	const [formula, setFormula] = useState(startFormula);
 	const [colors, setColors] = useState(startColors);
 	const [tiles, setTiles] = useState([]);
+	const [popoverColors, setPopoverColors] = useState([]);
+	const [showPopover, setShowPopover] = useState(false);
 	const maxTiles = 51;
 
 	useEffect(() => {
@@ -98,10 +102,20 @@ export default function ColorPicker() {
 		setTiles(newTiles);
 	}, [formula, colors]);
 
+	// Lauscht an showPopover und blendet das Popover wieder aus
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setShowPopover(false);
+		}, 2000);
+
+		// Aufräumfunktion
+		return () => clearTimeout(timer);
+	}, [showPopover]);
+
 	return (
 		<Fragment>
 			<Helmet>
-				<title>Color Picker</title>
+				<title>Sebastian Klein - Color Picker</title>
 			</Helmet>
 
 			{/* Trick: .color-control-wrapper ist leicht größer als .color-control (padding)
@@ -191,12 +205,19 @@ export default function ColorPicker() {
 						}}
 						className={css.tile}
 						key={tile.id}
-						onClick={() => onTileClick(tile)}
+						onClick={() => {
+							setPopoverColors(tile);
+							setShowPopover(true);
+							copyToClipboard(tile.r, tile.g, tile.b);
+						}}
 					>
 						{tile.r} <br /> {tile.g} <br /> {tile.b}
 					</div>
 				))}
 			</div>
+
+			{/* Zeige das Popover Fenster, wenn eine Tile geklickt wird */}
+			<div>{showPopover && <Popover colors={popoverColors} />}</div>
 		</Fragment>
 	);
 }
@@ -240,9 +261,6 @@ function changeFormula(btn, formula, setFormula) {
 	}
 }
 
-function onTileClick(tile) {
-	// Beim Klick auf eine Tile wird der Farbcode in die Zwischenablage kopiert und eine entsprechende
-	// Bestätigung als popup ausgegeben
-
-	navigator.clipboard.writeText(`rgb(${tile.r},${tile.g},${tile.b})`);
+function copyToClipboard(r, g, b) {
+	navigator.clipboard.writeText(`rgb(${r},${g},${b})`);
 }

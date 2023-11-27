@@ -3,7 +3,7 @@
 	margin-top: 20px;
 	margin-right: 10%;
 	/* height: 100vh; */
-	/* background-color: var(--primary-background-color); */
+	/* background-color: var(--active-link-color); */
 }
 
 .tile {
@@ -92,12 +92,14 @@
 
 .colorSlider::-webkit-slider-thumb {
 	-webkit-appearance: none;
-	height: 40px;
+	height: 10px;
 	width: 10px;
-	background: #03c533;
+	border-radius: 100px;
+	background: var(--primary-font-color);
 	cursor: pointer;
-	margin-top: -15px;
-	border-radius: 100%;
+
+	/* Formel: (Trackheight (px) / 2) - (Thurmbheight (px) / 2) */
+	margin-top: -1px;
 }
 
 .colorSlider::-moz-range-thumb {
@@ -117,13 +119,15 @@
 
 .colorSlider::-webkit-slider-runnable-track {
 	width: 100px;
-	height: 1px;
+	height: 8px;
 	cursor: pointer;
-	background: #ccc;
+	background: var(--active-link-color);
+	border-radius: 100px;
+	margin: 1rem;
 }
 
 .colorSlider:active::-webkit-slider-runnable-track {
-	background: #d6d6d6;
+	background: var(--active-link-color);
 }
 
 .colorSlider::-moz-range-track {

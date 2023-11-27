@@ -29,7 +29,7 @@ body {
 	background-color: var(--temp-header-color);
 
 	/* Tatsächliche Farbe */
-	background-color: var(--primary-background-color);
+	background-color: var(--secondary-background-color);
 }
 
 .site-content {
@@ -51,5 +51,5 @@ body {
 	background-color: var(--temp-footer-color);
 
 	/* Tatsächliche Farbe */
-	background-color: var(--primary-background-color);
+	background-color: var(--secondary-background-color);
 }

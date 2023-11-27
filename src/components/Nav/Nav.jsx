@@ -17,7 +17,7 @@ export default function Nav() {
 					</Link>
 				</li>
 				<li>
-					<Link to="/kontakt" className={css.link}>
+					<Link to="/hire-me" className={css.link}>
 						Hire me
 					</Link>
 				</li>

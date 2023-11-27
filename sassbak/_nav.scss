@@ -1,9 +1,0 @@
-@use 'variables' as *;
-
-.main-navigation {
-	display: flex;
-	gap: 1.5rem;
-	link > a {
-		text-decoration: none;
-	}
-}
