@@ -8,7 +8,9 @@ export default function Start() {
 			<Helmet>
 				<title>Sebastian Klein - Start</title>
 			</Helmet>
-			<div className={css.start}>Start</div>
+			<div className={css.start}>
+				<div className={css.box}></div>
+			</div>
 		</Fragment>
 	);
 }

@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import css from './ColorPicker.module.css';
 import Popover from '../Popover/Popover';
+import { AnimatePresence } from 'framer-motion';
 
 // Ideen:
 // 1. Slidereinstellungen via URL-Parameter teilbar machen
@@ -45,21 +46,29 @@ const startColors = [
 export default function ColorPicker() {
 	const [formula, setFormula] = useState(startFormula);
 	const [colors, setColors] = useState(startColors);
-	const [popoverColors, setPopoverColors] = useState([]);
-	const [showPopover, setShowPopover] = useState(false);
+	const [popover, setPopover] = useState([]);
 
 	// Erzeuge die Tiles
 	const tiles = getTiles(colors, formula);
 
-	// Lauscht an showPopover und blendet das Popover wieder aus
+	// Lauscht an popover und blendet das Popover nach einer Zeit wieder aus
 	useEffect(() => {
-		const timer = setTimeout(() => {
-			setShowPopover(false);
-		}, 2000);
+		// Da useEffect an popover lauscht aber auch popover ändert, würde eine
+		// Endloschleife entstehen, wenn man nicht als Abbruchbedingung festlegt,
+		// dass popover.length > 0 ist
+		// => Sobald das Array leer ist, wird popover nicht mehr geändert
+		// => useEffect triggert sich nicht mehr selbst
+		if (popover.length > 0) {
+			const timer = setTimeout(() => {
+				console.log('Discarded');
+				const discardFirstElement = popover.slice(1);
+				setPopover(discardFirstElement);
+			}, 3000);
 
-		// Aufräumfunktion
-		return () => clearTimeout(timer);
-	}, [showPopover]);
+			// Aufräumfunktion
+			return () => clearTimeout(timer);
+		}
+	}, [popover]);
 
 	return (
 		<Fragment>
@@ -155,8 +164,7 @@ export default function ColorPicker() {
 						className={css.tile}
 						key={tile.id}
 						onClick={() => {
-							setPopoverColors(tile);
-							setShowPopover(true);
+							setPopover((prevMsg) => [...prevMsg, tile]);
 							copyToClipboard(tile.r, tile.g, tile.b);
 						}}
 					>
@@ -166,7 +174,15 @@ export default function ColorPicker() {
 			</div>
 
 			{/* Zeige das Popover Fenster, wenn eine Tile geklickt wird */}
-			<div>{showPopover && <Popover colors={popoverColors} />}</div>
+			<AnimatePresence>
+				{popover.map((msg) => (
+					<Popover
+						colors={msg}
+						amount={popover.length}
+						key={Math.random(msg.id)}
+					/>
+				))}
+			</AnimatePresence>
 		</Fragment>
 	);
 }

@@ -10,49 +10,18 @@
 	/* Position */
 	/* fixed, damit anderer Content nicht verdrängt wird und das Element fest in Sicht bleibt*/
 	position: fixed;
-	width: fit-content;
+	width: max-content;
 	top: 80%;
 	left: 50%;
-	transform: translateX(-50%);
 	margin: auto;
 
 	/* Rahmen */
 	border-radius: 25px;
 	border: 2px solid;
 	border-color: var(--active-link-color);
-	padding: 5px;
+	padding: 10px;
 
 	/* Farben */
 	color: var(--primary-font-color);
 	background-color: var(--primary-background-color);
-
-	/* Einblenden Animation */
-	-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-		both;
-	animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
-@-webkit-keyframes slide-in-bottom {
-	0% {
-		-webkit-transform: translateY(1000px) translateX(-50%);
-		transform: translateY(1000px) translateX(-50%);
-		opacity: 0;
-	}
-	100% {
-		-webkit-transform: translateY(0) translateX(-50%);
-		transform: translateY(0) translateX(-50%);
-		opacity: 1;
-	}
-}
-@keyframes slide-in-bottom {
-	0% {
-		-webkit-transform: translateY(1000px) translateX(-50%);
-		transform: translateY(1000px) translateX(-50%);
-		opacity: 0;
-	}
-	100% {
-		-webkit-transform: translateY(0) translateX(-50%);
-		transform: translateY(0) translateX(-50%);
-		opacity: 1;
-	}
 }

@@ -1,5 +1,5 @@
 body {
-	background-color: var(--primary-background-color);
+	background-color: var(--debug-red);
 
 	/* width: 100vw: 
 	Verhindere Layout-Shift durch ein- und ausblenden der Scrollbar
@@ -10,13 +10,19 @@ body {
 		=> Verschiebe Content um die Differenz
 		*/
 
-	padding-left: calc(100vw - 100%);
+	/* padding-left: calc(100vw - 100%); */
+	/* height: 100vh; */
+}
+
+html {
+	/* height: 100vh; */
 }
 
 .site-wrapper {
 	display: flex;
 	flex-direction: column;
-	min-height: 100vh;
+	flex: 1;
+	min-height: 100dvh;
 
 	> * {
 		/* padding: calc(0.5rem + 2vw); */
@@ -34,13 +40,19 @@ body {
 
 .site-content {
 	flex-grow: 1;
+	/* display: grid; */
 	/* Für ungerade Pixelwerte, die  man in rem umrechnen will: */
-	max-width: 64rem;
+	max-width: 100%;
 	width: 100%;
 	margin-inline: auto;
+	padding: 0px;
+
+	/* @media (width >= 50rem) {
+		grid-template-columns: 1fr 20rem;
+	} */
 
 	/* Signalfarbe zum Debuggen */
-	background-color: var(--temp-content-color);
+	background-color: var(--debug-green);
 
 	/* Tatsächliche Farbe */
 	background-color: var(--primary-background-color);
@@ -48,7 +60,7 @@ body {
 
 .site-footer {
 	/*Signalfarbe zum Debuggen */
-	background-color: var(--temp-footer-color);
+	background-color: var(--debug-blue);
 
 	/* Tatsächliche Farbe */
 	background-color: var(--secondary-background-color);

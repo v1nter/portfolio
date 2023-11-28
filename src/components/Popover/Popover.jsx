@@ -1,18 +1,26 @@
 import css from './Popover.module.css';
+import { AnimatePresence, motion } from 'framer-motion';
 
-export default function Popover({ colors }) {
+export default function Popover({ colors, amount }) {
 	const r = colors.r;
 	const g = colors.g;
 	const b = colors.b;
 
-	console.log(colors);
-
-	// const log = colors.map((obj) => obj);
-	// console.log(log);
+	console.log(amount);
 
 	return (
-		<div className={css.popOverContent}>
+		<motion.div
+			className={css.popOverContent}
+			initial={{ opacity: 0, y: 200, translateX: '-50%' }}
+			animate={{
+				opacity: 1,
+				y: 0,
+				translateY: '-50%',
+				translateX: '-50%',
+			}}
+			exit={{ opacity: 0, y: -200 }}
+		>
 			Farbe {r} {g} {b} in Zwischenablage kopiert
-		</div>
+		</motion.div>
 	);
 }

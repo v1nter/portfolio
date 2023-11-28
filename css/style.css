@@ -1,3 +1,4 @@
 @import 'normalize';
 @import 'globals/colors';
+@import 'globals/queries';
 @import 'layout';
