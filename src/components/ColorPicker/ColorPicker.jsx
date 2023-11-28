@@ -2,7 +2,6 @@ import { Fragment, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import css from './ColorPicker.module.css';
 import Popover from '../Popover/Popover';
-import { useDebouncedValue } from '../../hooks/useDebouncedValue';
 
 // Ideen:
 // 1. Slidereinstellungen via URL-Parameter teilbar machen
@@ -31,76 +30,26 @@ import { useDebouncedValue } from '../../hooks/useDebouncedValue';
 // Inspration Design:
 // https://www.framer.com/motion/
 
+const startFormula = [
+	{ color: 'r', formula: -1 },
+	{ color: 'g', formula: 1 },
+	{ color: 'b', formula: 1 },
+];
+
+const startColors = [
+	{ color: 'r', value: 255 },
+	{ color: 'g', value: 0 },
+	{ color: 'b', value: 0 },
+];
+
 export default function ColorPicker() {
-	const startFormula = [
-		{ color: 'r', formula: -1 },
-		{ color: 'g', formula: 1 },
-		{ color: 'b', formula: 1 },
-	];
-
-	const startColors = [
-		{ color: 'r', value: 255 },
-		{ color: 'g', value: 0 },
-		{ color: 'b', value: 0 },
-	];
-
 	const [formula, setFormula] = useState(startFormula);
 	const [colors, setColors] = useState(startColors);
-	const [tiles, setTiles] = useState([]);
 	const [popoverColors, setPopoverColors] = useState([]);
 	const [showPopover, setShowPopover] = useState(false);
-	const maxTiles = 51;
 
-	useEffect(() => {
-		// Lauscht an colors (= Slider) und an formula (= Buttons)
-		// Wird ein Slider betätigt, werden iterativ die Farben aller Tiles
-		// berechnet, ausgehend vom Startwert, den der Slider vorgibt
-		//
-		// Für jede Tile wird ein Objekt erzeugt, dass die Werte für die Farbkombination enthält
-		// Alle Tile-Objekte werden im newTiles-Array gespeichert, aus dem anschließend
-		// der neue tiles-State erzeugt wird.
-		//
-		// Wird die Formel über die Buttons geändert, wird useEffect ebenfalls getriggert und
-		// die Tile-Objekte neu berechnet
-
-		const newTiles = [];
-
-		// Lese die Formeln für r, g, b, die über die Buttons eingestellt werden
-		const rFormula = formula.find(({ color }) => color === 'r').formula;
-		const gFormula = formula.find(({ color }) => color === 'g').formula;
-		const bFormula = formula.find(({ color }) => color === 'b').formula;
-
-		// Lese die Werte für r, g, b, die über die Slider eingestellt werden
-		const r = colors.find(({ color }) => color === 'r').value;
-		const g = colors.find(({ color }) => color === 'g').value;
-		const b = colors.find(({ color }) => color === 'b').value;
-
-		for (let i = 0; i <= maxTiles; i = i + 1) {
-			// Erzeuge pro Schleifendurchlauf eine neue Tile t
-			const t = Object.create(newTiles);
-			t.id = i + 1;
-
-			// Lege die Farbe von t fest.
-			// Die Farbe jedes weiteren t ändert sich graduell zu seinem Vorgänger
-			// Wenn rformula = 0: r bleibt konstant
-			// Wenn rformula = 1: r steigt in Schritten +5
-			// Wenn rForumla = -1: r sinkt in Schritten - 5
-
-			t.r = r + i * 5 * rFormula;
-			t.g = g + i * 5 * gFormula;
-			t.b = b + i * 5 * bFormula;
-
-			// Falls ein Farbcode > 255 oder < 0 ist, setze ihn zurück auf 255 bzw. 0
-			t.r >= 255 ? (t.r = 255) : t.r < 0 ? (t.r = 0) : t.r;
-			t.g >= 255 ? (t.g = 255) : t.g < 0 ? (t.g = 0) : t.g;
-			t.b >= 255 ? (t.b = 255) : t.b < 0 ? (t.b = 0) : t.b;
-
-			// Füge die neu erzeugte Tile t dem Array hinzu
-			newTiles.push(t);
-		}
-
-		setTiles(newTiles);
-	}, [formula, colors]);
+	// Erzeuge die Tiles
+	const tiles = getTiles(colors, formula);
 
 	// Lauscht an showPopover und blendet das Popover wieder aus
 	useEffect(() => {
@@ -263,4 +212,55 @@ function changeFormula(btn, formula, setFormula) {
 
 function copyToClipboard(r, g, b) {
 	navigator.clipboard.writeText(`rgb(${r},${g},${b})`);
+}
+
+function getTiles(colors, formula) {
+	// Lauscht an colors (= Slider) und an formula (= Buttons)
+	// Wird ein Slider betätigt, werden iterativ die Farben aller Tiles
+	// berechnet, ausgehend vom Startwert, den der Slider vorgibt
+	//
+	// Für jede Tile wird ein Objekt erzeugt, dass die Werte für die Farbkombination enthält
+	// Alle Tile-Objekte werden im tiles-Array gespeichert, der zurückgegeben wird
+	//
+	// Wird die Formel über die Buttons geändert, wird ebenfalls ein re-rendering getriggert (weil die Buttons einen State haben) und
+	// die Tile-Objekte neu berechnet
+
+	const tiles = [];
+	const maxTiles = 51;
+
+	// Lese die Formeln für r, g, b, die über die Buttons eingestellt werden
+	const rFormula = formula.find(({ color }) => color === 'r').formula;
+	const gFormula = formula.find(({ color }) => color === 'g').formula;
+	const bFormula = formula.find(({ color }) => color === 'b').formula;
+
+	// Lese die Werte für r, g, b, die über die Slider eingestellt werden
+	const r = colors.find(({ color }) => color === 'r').value;
+	const g = colors.find(({ color }) => color === 'g').value;
+	const b = colors.find(({ color }) => color === 'b').value;
+
+	for (let i = 0; i <= maxTiles; i = i + 1) {
+		// Erzeuge pro Schleifendurchlauf eine neue Tile t
+		const t = {};
+		t.id = i + 1;
+
+		// Lege die Farbe von t fest.
+		// Die Farbe jedes weiteren t ändert sich graduell zu seinem Vorgänger
+		// Wenn rformula = 0: r bleibt konstant
+		// Wenn rformula = 1: r steigt in Schritten +5
+		// Wenn rForumla = -1: r sinkt in Schritten - 5
+
+		t.r = r + i * 5 * rFormula;
+		t.g = g + i * 5 * gFormula;
+		t.b = b + i * 5 * bFormula;
+
+		// Falls ein Farbcode > 255 oder < 0 ist, setze ihn zurück auf 255 bzw. 0
+		t.r >= 255 ? (t.r = 255) : t.r < 0 ? (t.r = 0) : t.r;
+		t.g >= 255 ? (t.g = 255) : t.g < 0 ? (t.g = 0) : t.g;
+		t.b >= 255 ? (t.b = 255) : t.b < 0 ? (t.b = 0) : t.b;
+
+		// Füge die neu erzeugte Tile t dem Array hinzu
+		tiles.push(t);
+	}
+
+	return tiles;
 }
