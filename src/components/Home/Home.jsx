@@ -16,9 +16,9 @@ export default function Home() {
 			<AnimatePresence>
 				<motion.div
 					className={css.home}
-					initial={{ y: 200, opacity: 0, transition: { duration: 0.5 } }}
-					animate={{ y: 0, opacity: 1, transition: { duration: 0.5 } }}
-					exit={{ y: -200, opacity: 0, transition: { duration: 0.5 } }}
+					initial={{ opacity: 0, transition: { duration: 1 } }}
+					animate={{ opacity: 1, transition: { duration: 1 } }}
+					exit={{ opacity: 0, transition: { duration: 1 } }}
 					key={'Home'}
 				>
 					<div className={css.title}>

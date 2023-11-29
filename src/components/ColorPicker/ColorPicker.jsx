@@ -36,9 +36,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 // 13. Demoseite: Überlappende, schräg stehende Kacheln zum durchsliden mit "Aufstell"-Animation beim Hovern
 // 14. Demoseite: Animation Siebdruck/4-Farb-Druck/CMYK-Separation
 // 15. Demoseite: Blog/Artikelseite in verschiedenen Styles, umschaltbar durch Klicken oder Scrollen, mit Übergangsanimation (1. Style: passend zum Rest der Seite)
-
-// Inspration Design:
-// https://www.framer.com/motion/
+// 16. Demoseite: Alternative Galerie: Wabenstruktur / Hexagone
+//     ODER Spiel: Undurchsichtige Wabenstruktur über Foto, bei Klick => Wabe wird hochgeschnippst, dreht sich, wird durchsichtig und enthüllt Teil des Fotos
 
 const startFormula = [
 	{ color: 'r', formula: -1 },
@@ -90,9 +89,9 @@ export default function ColorPicker() {
 				Der Gradient startet mit der ersten Tile und endet mit der letzten => Zwischenwerte werden berechnet */}
 			<AnimatePresence>
 				<motion.div
-					initial={{ opacity: 0, transition: { duration: 0.5 } }}
-					animate={{ opacity: 1, transition: { duration: 0.5 } }}
-					exit={{ opacity: 0, transition: { duration: 0.5 } }}
+					initial={{ opacity: 0, transition: { duration: 1 } }}
+					animate={{ opacity: 1, transition: { duration: 1 } }}
+					exit={{ opacity: 0, transition: { duration: 1 } }}
 					key={'ColorPicker'}
 				>
 					<div

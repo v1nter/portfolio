@@ -12,7 +12,7 @@ const menuItems = [
 	// { id: 3, title: 'techStack', to: '/', ref: 0 },
 ];
 
-let override = 0;
+let override;
 
 const startMenu = menuItems.find((item) => item.id === 1);
 
@@ -39,7 +39,7 @@ export default function menu() {
 		//
 		// Workaround: Löse beim Klicken auf interne Links einen Override aus, der den State manuell auf den korrekten Zustand aktualisiert
 		//
-		// Schönere Lösung: Entwickle externes Menüitem, das anstelle von <Link> nicht eigenständig die Seite wechselt, so dass hinterher via
+		// Schönere Lösung: Entwickle anstelle von <Link> ein externes Menüitem, das nicht eigenständig die Seite wechselt, so dass hinterher via
 		// window.location.pathname der State zurechtgebogen werden muss. Stattdessen sollte das externe Menüitem (genau wie das normale MenuItem) ein Objekt übergeben,
 		// mit dem menuDispatch regulär getriggert wird, wodurch erst der Seitenwechsel ausgelöst wird.
 

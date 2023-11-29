@@ -23,7 +23,5 @@
 // 16. Demoseite: Alternative Galerie: Wabenstruktur / Hexagone 
         ODER Spiel: Undurchsichtige Wabenstruktur über Foto, bei Klick => Wabe wird hochgeschnippst, dreht sich, wird durchsichtig und enthüllt Foto
 
-// Inspration Design:
-// https://www.framer.com/motion/
 
 // Three.js für 3D-Animationen
