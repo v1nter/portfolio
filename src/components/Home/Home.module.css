@@ -1,4 +1,4 @@
-@import 'C:\Users\Sebastian\Desktop\Fortbildung Projekte\Übungsprojekt\Vite\vite-template\css\globals\queries.css';
+@import 'css\globals\colors.css';
 
 .home {
 	color: var(--primary-font-color);
