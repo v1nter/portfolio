@@ -10,17 +10,19 @@ $primary-font-color: aliceblue; */
 	--dark-red: rgb(120, 0, 0);
 	--dark-green: rgb(0, 120, 0);
 	--dark-blue: rgb(0, 0, 120);
+	--neon-pink: rgb(220, 35, 115);
+	--neon-green: rgb(50, 205, 115);
 
 	/* Funktionen definieren */
 	--primary-background-color: var(--dark-grey);
 	--secondary-background-color: var(--lighter-grey);
 	--primary-font-color: var(--white);
 	--active-link-color: var(--violett);
+	--accent-1: var(--neon-pink);
+	--accent-2: var(--neon-green);
+
+	/* Debug Farben */
 	--debug-red: var(--dark-red);
 	--debug-green: var(--dark-green);
 	--debug-blue: var(--dark-blue);
-
-	--red-track: var(--dark-red);
-	--green-track: var(--dark-green);
-	--blue-track: var(--dark-blue);
 }

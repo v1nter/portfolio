@@ -20,7 +20,8 @@
 // 13. Demoseite: Überlappende, schräg stehende Kacheln zum durchsliden mit "Aufstell"-Animation beim Hovern
 // 14. Demoseite: Animation Siebdruck/4-Farb-Druck/CMYK-Separation
 // 15. Demoseite: Blog/Artikelseite in verschiedenen Styles, umschaltbar durch Klicken oder Scrollen, mit Übergangsanimation (1. Style: passend zum Rest der Seite)
-// 16. Demoseite: Alternative Galerie: Wabenstruktur / Hexagone
+// 16. Demoseite: Alternative Galerie: Wabenstruktur / Hexagone 
+        ODER Spiel: Undurchsichtige Wabenstruktur über Foto, bei Klick => Wabe wird hochgeschnippst, dreht sich, wird durchsichtig und enthüllt Foto
 
 // Inspration Design:
 // https://www.framer.com/motion/

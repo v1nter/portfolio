@@ -4,6 +4,15 @@ import css from './ColorPicker.module.css';
 import Popover from '../Popover/Popover';
 import { AnimatePresence } from 'framer-motion';
 
+// Prioritäten:
+// 1. Animiertes Burgermenü
+// 2. Startseite befüllen + Font
+// 3. Kontaktformular
+// 4. Colorpicker fertige configs
+// 5. Page Transition
+// 6. Landing Page
+// 7. TechStack
+
 // Ideen:
 // 1. Slidereinstellungen via URL-Parameter teilbar machen
 // 2. Links eine Auswahl an Default-Konfigurationen anzeigen und durch Klicks auswählbar machen. Die Defaults sollten schon einen Gradienten anzeigen

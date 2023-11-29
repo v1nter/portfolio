@@ -1,0 +1,52 @@
+@import 'C:\Users\Sebastian\Desktop\Fortbildung Projekte\Übungsprojekt\Vite\vite-template\css\globals\queries.css';
+
+.home {
+	color: var(--primary-font-color);
+}
+
+.title {
+	font-size: 3rem;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	padding: 1rem;
+	margin: rem;
+}
+
+.article {
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	padding: 1rem;
+	margin: rem;
+	text-align: end;
+
+	@media (orientation: landscape) {
+		font-size: 2rem;
+	}
+
+	@media (orientation: portrait) {
+		font-size: 2rem;
+	}
+
+	> a {
+		color: var(--accent-1);
+		text-decoration: none;
+
+		/* @media (orientation: landscape) {
+			font-size: 2rem;
+		}
+		@media (orientation: portrait) {
+			font-size: 1rem;
+		} */
+
+		&:hover {
+			color: var(--accent-2);
+		}
+
+		&:focus {
+			color: var(---accent-2);
+		}
+	}
+}
+
+.decoration {
+	color: var(--accent-2);
+	font-weight: bold;
+}

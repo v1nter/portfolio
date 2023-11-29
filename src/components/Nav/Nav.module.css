@@ -2,22 +2,27 @@
 	> ul {
 		display: flex;
 		list-style: none;
-		gap: 2rem;
-		color: white;
+		gap: 3rem;
+		color: var(--accent-1);
 	}
 }
 
 .link {
-	color: var(--primary-font-color);
+	color: var(--accent-1);
 	text-decoration: none;
-	font-size: 1.5rem;
-	text-transform: uppercase;
+
+	@media (orientation: landscape) {
+		font-size: 3rem;
+	}
+	@media (orientation: portrait) {
+		font-size: 1rem;
+	}
 
 	&:hover {
-		color: var(--active-link-color);
+		color: var(--accent-2);
 	}
 
 	&:focus {
-		color: var(--active-link-color);
+		color: var(---accent-2);
 	}
 }
