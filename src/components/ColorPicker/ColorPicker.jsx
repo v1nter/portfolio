@@ -116,10 +116,7 @@ export default function ColorPicker() {
 						<div className={css.colorControl}>
 							{colors.map((obj) => (
 								<>
-									<label
-										key={obj.color + '-label'}
-										htmlFor={`range-${obj.color}`}
-									>
+									<label key={Math.random()} htmlFor={`range-${obj.color}`}>
 										{obj.color}
 									</label>
 									<input
@@ -130,7 +127,7 @@ export default function ColorPicker() {
 										max="255"
 										step="5"
 										value={obj.value}
-										key={obj.color + '-slider'}
+										key={Math.random()}
 										onChange={(e) =>
 											setColors(
 												colors.map((col) =>
@@ -150,6 +147,7 @@ export default function ColorPicker() {
 							<button
 								className={css.colorButton}
 								value={formula.find(({ color }) => color === 'r').color}
+								key={'r'}
 								onClick={(e) =>
 									changeFormula(e.target.value, formula, setFormula)
 								}
@@ -160,6 +158,7 @@ export default function ColorPicker() {
 							<button
 								className={css.colorButton}
 								value={formula.find(({ color }) => color === 'g').color}
+								key={'g'}
 								onClick={(e) =>
 									changeFormula(e.target.value, formula, setFormula)
 								}
@@ -170,6 +169,7 @@ export default function ColorPicker() {
 							<button
 								className={css.colorButton}
 								value={formula.find(({ color }) => color === 'b').color}
+								key={'b'}
 								onClick={(e) =>
 									changeFormula(e.target.value, formula, setFormula)
 								}

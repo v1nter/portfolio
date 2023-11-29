@@ -12,7 +12,7 @@ const menuItems = [
 	// { id: 3, title: 'techStack', to: '/', ref: 0 },
 ];
 
-// let overrideItem;
+let override = 0;
 
 const startMenu = menuItems.find((item) => item.id === 1);
 
@@ -29,13 +29,31 @@ export default function menu() {
 	const [menu, menuDispatch] = useReducer(menuReducer, startMenu);
 	const [, setLocation] = useLocation();
 
-	// useEffect(() => {
-	// 	console.log(overrideItem);
-	// }, [overrideItem]);
-
 	// Wechsle die Seite entsprechend dem menu-State
-	// changeLocation lagert den useLocation-Hook aus, um Seitenwechsel auch außerhalb des Menüs zu ermöglichen
-	setLocation(menu.to);
+	useEffect(() => {
+		// Das Menü nutzt den menu-State, um Seitenwechsel vorzunehmen.
+		// Problem: Von außerhalb des Menüs kann man nicht auf den State zugreifen
+		//
+		// => Das Menü bekommt nicht mit, wenn die Seite über einen internen Link gewechselt wird (wie hireMe auf Home)
+		// => Die Ursprungsseite (im Beispiel: Home) kann nicht mehr annavigiert werden, da sich der User laut State noch auf der ursprünglichen Seite befindet
+		//
+		// Workaround: Löse beim Klicken auf interne Links einen Override aus, der den State manuell auf den korrekten Zustand aktualisiert
+		//
+		// Schönere Lösung: Entwickle externes Menüitem, das anstelle von <Link> nicht eigenständig die Seite wechselt, so dass hinterher via
+		// window.location.pathname der State zurechtgebogen werden muss. Stattdessen sollte das externe Menüitem (genau wie das normale MenuItem) ein Objekt übergeben,
+		// mit dem menuDispatch regulär getriggert wird, wodurch erst der Seitenwechsel ausgelöst wird.
+
+		if (!override) {
+			setLocation(menu.to);
+		} else if (override) {
+			const changedMenuItem = menuItems.find(
+				(item) => item.to === window.location.pathname
+			);
+
+			menuDispatch({ action: changedMenuItem.title, id: changedMenuItem.id });
+			override = false;
+		}
+	}, [menu, override]);
 
 	return (
 		// Darstellung der Hauptebene des Menüs: Zeige nur die Menüeinträge,
@@ -50,10 +68,9 @@ export default function menu() {
 	);
 }
 
-// export function menuOverride(item) {
-// 	const x = [item];
-// 	overrideItem = x.map((item) => item);
-// }
+export function overrideMenu() {
+	override = true;
+}
 
 function menuReducer(menu, message) {
 	// Beim Klick auf ein MenuItem kommt hier eine Nachricht an

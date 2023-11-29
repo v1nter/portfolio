@@ -3,6 +3,7 @@ import css from './Home.module.css';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'wouter';
 import { AnimatePresence, motion } from 'framer-motion';
+import { overrideMenu } from '../Menu/Menu';
 
 const html = `//&nbsp;&#10148;`;
 
@@ -27,6 +28,7 @@ export default function Home() {
 						I'm a Webdeveloper and you can{' '}
 						<Link
 							to="/hire-me"
+							onClick={() => overrideMenu()}
 							className={css.link}
 							dangerouslySetInnerHTML={{ __html: `${html}&nbsp;hireMe` }}
 						/>
