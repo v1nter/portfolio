@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import css from './ColorPicker.module.css';
 import Popover from '../Popover/Popover';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 // Prioritäten:
 // 1. Animiertes Burgermenü
@@ -88,109 +88,129 @@ export default function ColorPicker() {
 			{/* Trick: .color-control-wrapper ist leicht größer als .color-control (padding)
 				Dadurch bleibt ein kleiner Rand übrig, der als Gradient durchscheint
 				Der Gradient startet mit der ersten Tile und endet mit der letzten => Zwischenwerte werden berechnet */}
-
-			<div
-				className={css.colorControlWrapper}
-				style={{
-					'--gradient-starting-color': `${
-						tiles[0]
-							? `rgb(${tiles[0].r},${tiles[0].g},${tiles[0].b}`
-							: 'rgb(0,0,0) '
-					})`,
-					'--gradient-ending-color': `${
-						tiles[51]
-							? `rgb(${tiles[51].r},${tiles[51].g},${tiles[51].b}`
-							: 'rgb(0,0,0)'
-					})`,
-				}}
-			>
-				{/* Slider beeinflussen die States für r, g und b
+			<AnimatePresence>
+				<motion.div
+					initial={{ opacity: 0, transition: { duration: 0.5 } }}
+					animate={{ opacity: 1, transition: { duration: 0.5 } }}
+					exit={{ opacity: 0, transition: { duration: 0.5 } }}
+					key={'ColorPicker'}
+				>
+					<div
+						className={css.colorControlWrapper}
+						style={{
+							'--gradient-starting-color': `${
+								tiles[0]
+									? `rgb(${tiles[0].r},${tiles[0].g},${tiles[0].b}`
+									: 'rgb(0,0,0) '
+							})`,
+							'--gradient-ending-color': `${
+								tiles[51]
+									? `rgb(${tiles[51].r},${tiles[51].g},${tiles[51].b}`
+									: 'rgb(0,0,0)'
+							})`,
+						}}
+					>
+						{/* Slider beeinflussen die States für r, g und b
 				Bei einer Änderung wird der State aktualisiert und dadurch
 				useEffect getriggert, welches die Kachelfarben neu berechnet */}
-				<div className={css.colorControl}>
-					{colors.map((obj) => (
-						<>
-							<label key={obj.color + '-label'} htmlFor={`range-${obj.color}`}>
-								{obj.color}
-							</label>
-							<input
-								className={css.colorSlider}
-								type="range"
-								id={`range-${obj.color}`}
-								min="0"
-								max="255"
-								step="5"
-								value={obj.value}
-								key={obj.color + '-slider'}
-								onChange={(e) =>
-									setColors(
-										colors.map((col) =>
-											col.color === obj.color
-												? { color: col.color, value: parseInt(e.target.value) }
-												: { color: col.color, value: col.value }
-										)
-									)
+						<div className={css.colorControl}>
+							{colors.map((obj) => (
+								<>
+									<label
+										key={obj.color + '-label'}
+										htmlFor={`range-${obj.color}`}
+									>
+										{obj.color}
+									</label>
+									<input
+										className={css.colorSlider}
+										type="range"
+										id={`range-${obj.color}`}
+										min="0"
+										max="255"
+										step="5"
+										value={obj.value}
+										key={obj.color + '-slider'}
+										onChange={(e) =>
+											setColors(
+												colors.map((col) =>
+													col.color === obj.color
+														? {
+																color: col.color,
+																value: parseInt(e.target.value),
+														  }
+														: { color: col.color, value: col.value }
+												)
+											)
+										}
+									/>
+								</>
+							))}
+
+							<button
+								className={css.colorButton}
+								value={formula.find(({ color }) => color === 'r').color}
+								onClick={(e) =>
+									changeFormula(e.target.value, formula, setFormula)
 								}
-							/>
-						</>
-					))}
+							>
+								r {+formula.find(({ color }) => color === 'r').formula}
+							</button>
 
-					<button
-						className={css.colorButton}
-						value={formula.find(({ color }) => color === 'r').color}
-						onClick={(e) => changeFormula(e.target.value, formula, setFormula)}
-					>
-						r {+formula.find(({ color }) => color === 'r').formula}
-					</button>
+							<button
+								className={css.colorButton}
+								value={formula.find(({ color }) => color === 'g').color}
+								onClick={(e) =>
+									changeFormula(e.target.value, formula, setFormula)
+								}
+							>
+								g {+formula.find(({ color }) => color === 'g').formula}
+							</button>
 
-					<button
-						className={css.colorButton}
-						value={formula.find(({ color }) => color === 'g').color}
-						onClick={(e) => changeFormula(e.target.value, formula, setFormula)}
-					>
-						g {+formula.find(({ color }) => color === 'g').formula}
-					</button>
+							<button
+								className={css.colorButton}
+								value={formula.find(({ color }) => color === 'b').color}
+								onClick={(e) =>
+									changeFormula(e.target.value, formula, setFormula)
+								}
+							>
+								b {+formula.find(({ color }) => color === 'b').formula}
+							</button>
+						</div>
+					</div>
 
-					<button
-						className={css.colorButton}
-						value={formula.find(({ color }) => color === 'b').color}
-						onClick={(e) => changeFormula(e.target.value, formula, setFormula)}
-					>
-						b {+formula.find(({ color }) => color === 'b').formula}
-					</button>
-				</div>
-			</div>
-
-			{/* Erzeugt mit .map() eine Schleife über das Tiles Array. 
+					{/* Erzeugt mit .map() eine Schleife über das Tiles Array. 
 			Das Array enthält Objekte mit jeweils einer Wertekombination für r, g, b, 
 			Mit jedem Objekt wird ein Div erzeugt, dass die entsprechende rgb-Hintergrundfarbe besitzt */}
-			<div className={css.colorBox}>
-				{tiles.map((tile) => (
-					<div
-						style={{
-							'--tile-color': `rgb(${tile.r},${tile.g},${tile.b})`,
-						}}
-						className={css.tile}
-						key={tile.id}
-						onClick={() => {
-							setPopover((prevMsg) => [...prevMsg, tile]);
-							copyToClipboard(tile.r, tile.g, tile.b);
-						}}
-					>
-						{tile.r} <br /> {tile.g} <br /> {tile.b}
+					<div className={css.colorBox}>
+						{tiles.map((tile) => (
+							<div
+								style={{
+									'--tile-color': `rgb(${tile.r},${tile.g},${tile.b})`,
+								}}
+								className={css.tile}
+								key={tile.id}
+								onClick={() => {
+									setPopover((prevMsg) => [...prevMsg, tile]);
+									copyToClipboard(tile.r, tile.g, tile.b);
+								}}
+							>
+								{tile.r} <br /> {tile.g} <br /> {tile.b}
+							</div>
+						))}
 					</div>
-				))}
-			</div>
 
-			{/* Zeige das Popover Fenster, wenn eine Tile geklickt wird */}
-			<AnimatePresence>
-				{popover.map((msg) => (
-					<Popover
-						colors={msg}
-						amount={popover.length}
-						key={Math.random(msg.id)}
-					/>
-				))}
+					{/* Zeige das Popover Fenster, wenn eine Tile geklickt wird */}
+					<AnimatePresence>
+						{popover.map((msg) => (
+							<Popover
+								colors={msg}
+								amount={popover.length}
+								key={Math.random(msg.id)}
+							/>
+						))}
+					</AnimatePresence>
+				</motion.div>
 			</AnimatePresence>
 		</Fragment>
 	);

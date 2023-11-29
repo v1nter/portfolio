@@ -5,6 +5,7 @@ import Footer from '../Footer/Footer.jsx';
 import Home from '../Home/Home.jsx';
 import { Route } from 'wouter';
 import Menu from '../Menu/Menu.jsx';
+import { createContext } from 'react';
 
 export default function Wrapper() {
 	return (

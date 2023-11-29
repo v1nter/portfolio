@@ -2,6 +2,7 @@ import { useReducer } from 'react';
 import css from './Menu.module.css';
 import MenuItem from './MenuItem';
 import { useLocation } from 'wouter';
+import { useEffect } from 'react';
 
 const menuItems = [
 	{ id: 1, title: 'home', to: '/', ref: 0 },
@@ -10,6 +11,8 @@ const menuItems = [
 	{ id: 4, title: 'colorPicker', to: '/', ref: 2 },
 	// { id: 3, title: 'techStack', to: '/', ref: 0 },
 ];
+
+// let overrideItem;
 
 const startMenu = menuItems.find((item) => item.id === 1);
 
@@ -23,10 +26,15 @@ const startMenu = menuItems.find((item) => item.id === 1);
 // 			In der Hauptfunktion wird mit dem setLocation-Hook von wouter zur neuen Seite navigiert
 
 export default function menu() {
-	const [location, setLocation] = useLocation();
 	const [menu, menuDispatch] = useReducer(menuReducer, startMenu);
+	const [, setLocation] = useLocation();
+
+	// useEffect(() => {
+	// 	console.log(overrideItem);
+	// }, [overrideItem]);
 
 	// Wechsle die Seite entsprechend dem menu-State
+	// changeLocation lagert den useLocation-Hook aus, um Seitenwechsel auch außerhalb des Menüs zu ermöglichen
 	setLocation(menu.to);
 
 	return (
@@ -41,6 +49,11 @@ export default function menu() {
 		</ul>
 	);
 }
+
+// export function menuOverride(item) {
+// 	const x = [item];
+// 	overrideItem = x.map((item) => item);
+// }
 
 function menuReducer(menu, message) {
 	// Beim Klick auf ein MenuItem kommt hier eine Nachricht an
