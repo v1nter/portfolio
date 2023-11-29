@@ -31,8 +31,9 @@ export default function Home() {
 					<a
 						href="https://github.com/v1nter/portfolio"
 						target="_blank"
-						dangerouslySetInnerHTML={{ __html: `${html}&nbsp;GitHub` }}
+						dangerouslySetInnerHTML={{ __html: `${html}&nbsp;gitHub` }}
 					/>
+					.
 				</div>
 				{/* <div className={css.box}></div> */}
 			</div>

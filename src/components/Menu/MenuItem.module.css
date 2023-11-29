@@ -1,0 +1,21 @@
+.link {
+	color: var(--accent-1);
+	text-decoration: none;
+	cursor: pointer;
+	user-select: none;
+
+	@media (orientation: landscape) {
+		font-size: 3rem;
+	}
+	@media (orientation: portrait) {
+		font-size: 1rem;
+	}
+
+	&:hover {
+		color: var(--accent-2);
+	}
+
+	&:focus {
+		color: var(---accent-2);
+	}
+}

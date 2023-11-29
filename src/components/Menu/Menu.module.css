@@ -1,0 +1,6 @@
+.menu {
+	color: var(--primary-font-color);
+	list-style: none;
+	display: flex;
+	gap: 3rem;
+}

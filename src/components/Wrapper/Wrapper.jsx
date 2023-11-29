@@ -4,12 +4,14 @@ import Kontakt from '../Kontakt/Kontakt.jsx';
 import Footer from '../Footer/Footer.jsx';
 import Home from '../Home/Home.jsx';
 import { Route } from 'wouter';
+import Menu from '../Menu/Menu.jsx';
 
 export default function Wrapper() {
 	return (
 		<div className="site-wrapper">
 			<div className="site-header">
-				<Nav />
+				{/* <Nav /> */}
+				<Menu />
 			</div>
 			<div className="site-content">
 				<Route path="/" component={Home} />

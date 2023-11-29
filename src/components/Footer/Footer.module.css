@@ -1,3 +1,5 @@
 .Footer {
 	color: var(--primary-font-color);
+	font-size: 0.8rem;
+	text-align: right;
 }

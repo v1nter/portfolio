@@ -2,6 +2,7 @@
 
 .home {
 	color: var(--primary-font-color);
+	user-select: none;
 }
 
 .title {
