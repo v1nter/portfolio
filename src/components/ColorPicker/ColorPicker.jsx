@@ -6,13 +6,11 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 // Prioritäten:
 // 1. Animiertes Burgermenü
-// 2. Startseite befüllen + Font
-// 3. Kontaktformular
-// 4. Colorpicker fertige configs
-// 5. Page Transition
-// 6. Landing Page
-// 7. TechStack
-// 8. Particle Cloud: https://www.youtube.com/watch?v=F20SxgG5MlM
+// 2. Kontaktformular
+// 3. Colorpicker fertige configs
+// 4. Landing Page
+// 5. TechStack
+// 6. Particle Cloud: https://www.youtube.com/watch?v=F20SxgG5MlM
 
 // Ideen:
 // 1. Slidereinstellungen via URL-Parameter teilbar machen

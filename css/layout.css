@@ -1,3 +1,7 @@
+body {
+	background-color: var(--secondary-background-color);
+}
+
 .site-wrapper {
 	display: flex;
 	flex-direction: column;

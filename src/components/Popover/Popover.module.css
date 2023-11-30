@@ -18,7 +18,7 @@
 	/* Rahmen */
 	border-radius: 25px;
 	border: 2px solid;
-	border-color: var(--active-link-color);
+	border-color: var(--accent-2);
 	padding: 10px;
 
 	/* Farben */
