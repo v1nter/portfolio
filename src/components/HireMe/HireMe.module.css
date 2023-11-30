@@ -119,3 +119,7 @@
 	background-color: var(--secondary-background-color);
 	color: var(--accent-1);
 }
+
+.required {
+	color: var(--secondary-background-color);
+}

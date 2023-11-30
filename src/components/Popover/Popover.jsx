@@ -20,7 +20,7 @@ export default function Popover({ colors, amount }) {
 			}}
 			exit={{ opacity: 0, y: -200 }}
 		>
-			Farbe {r} {g} {b} in Zwischenablage kopiert
+			Copied {r} {g} {b} to clipboard
 		</motion.div>
 	);
 }

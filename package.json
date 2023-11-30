@@ -10,6 +10,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@emailjs/browser": "^3.11.0",
 		"cssnano": "^6.0.1",
 		"framer-motion": "^10.16.5",
 		"postcss-jit-props": "^1.0.14",

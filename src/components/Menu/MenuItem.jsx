@@ -15,7 +15,6 @@ export default function MenuItem({ item, menuDispatch, allItems }) {
 	const [showSubMenu, setShowSubMenu] = useState(false);
 
 	const subItems = allItems.filter((subItem) => subItem.ref === item.id);
-	console.log(subItems);
 
 	// Konfiguration des MenuItems
 	const animatedLink = (
