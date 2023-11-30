@@ -1,4 +1,5 @@
-@custom-media --large (width >= 50rem);
-@custom-media --medium (32rem < width < 50rem);
-@custom-media --small (width < 32rem);
-/* @custom-media --tiny(width < 24); */
+:root {
+	@custom-media --large (width >= 50rem);
+	@custom-media --medium (32rem < width < 50rem);
+	@custom-media --small (width < 32rem);
+}
