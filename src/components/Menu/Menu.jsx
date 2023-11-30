@@ -6,10 +6,12 @@ import { useEffect } from 'react';
 
 const menuItems = [
 	{ id: 1, title: 'home', to: '/', ref: 0 },
-	{ id: 2, title: 'demo', to: '/ColorPicker', ref: 0 },
+	{ id: 2, title: 'demo', to: '/', ref: -1 },
 	{ id: 5, title: 'hireMe', to: '/hire-me', ref: 0 },
-	{ id: 4, title: 'colorPicker', to: '/', ref: 2 },
+	{ id: 4, title: 'colorPicker', to: '/ColorPicker', ref: 2 },
 	// { id: 3, title: 'techStack', to: '/', ref: 0 },
+	{ id: 6, title: 'lorem', to: '/lorem', ref: 2 },
+	{ id: 7, title: 'ipsum', to: '/ipsum', ref: 3 },
 ];
 
 let override;
@@ -62,7 +64,12 @@ export default function menu() {
 			{menuItems
 				.filter((item) => item.ref <= 0)
 				.map((item) => (
-					<MenuItem key={item.id} item={item} menuDispatch={menuDispatch} />
+					<MenuItem
+						key={item.id}
+						item={item}
+						menuDispatch={menuDispatch}
+						allItems={menuItems}
+					/>
 				))}
 		</ul>
 	);

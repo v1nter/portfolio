@@ -4,6 +4,7 @@ $primary-font-color: aliceblue; */
 :root {
 	/* Farben definieren */
 	--dark-grey: rgb(34, 34, 34);
+	--dark-grey-opaque: rgba(50, 50, 50, 0.95);
 	--lighter-grey: rgb(50, 50, 50);
 	--white: rgb(255, 255, 255);
 	--violett: rgb(125, 0, 255);
@@ -16,6 +17,7 @@ $primary-font-color: aliceblue; */
 	/* Funktionen definieren */
 	--primary-background-color: var(--dark-grey);
 	--secondary-background-color: var(--lighter-grey);
+	--primary-background-color-opaque: var(--dark-grey-opaque);
 	--primary-font-color: var(--white);
 	--active-link-color: var(--violett);
 	--accent-1: var(--neon-pink);

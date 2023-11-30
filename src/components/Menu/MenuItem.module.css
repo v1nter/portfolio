@@ -19,3 +19,22 @@
 		color: var(---accent-2);
 	}
 }
+
+.menuEntry {
+	display: flex;
+	flex-direction: column;
+}
+
+.subMenu {
+	padding-top: 0.5rem;
+	margin-top: 1rem;
+	padding-bottom: 0.5rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	background-color: var(--primary-background-color-opaque);
+	border-left: 2px solid;
+	/* border-bottom: 2px solid; */
+	border-color: var(--accent-1);
+	position: absolute;
+	transform: translateY(50px);
+}

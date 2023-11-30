@@ -12,6 +12,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 // 5. Page Transition
 // 6. Landing Page
 // 7. TechStack
+// 8. Particle Cloud: https://www.youtube.com/watch?v=F20SxgG5MlM
 
 // Ideen:
 // 1. Slidereinstellungen via URL-Parameter teilbar machen
@@ -89,10 +90,10 @@ export default function ColorPicker() {
 				Der Gradient startet mit der ersten Tile und endet mit der letzten => Zwischenwerte werden berechnet */}
 			<AnimatePresence>
 				<motion.div
-					initial={{ opacity: 0, transition: { duration: 1 } }}
-					animate={{ opacity: 1, transition: { duration: 1 } }}
-					exit={{ opacity: 0, transition: { duration: 1 } }}
-					key={'ColorPicker'}
+				// initial={{ opacity: 0, transition: { duration: 1 } }}
+				// animate={{ opacity: 1, transition: { duration: 1 } }}
+				// exit={{ opacity: 0, transition: { duration: 1 } }}
+				// key={'ColorPicker'}
 				>
 					<div
 						className={css.colorControlWrapper}

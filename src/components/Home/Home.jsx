@@ -25,23 +25,20 @@ export default function Home() {
 						Hi, I'm Sebastian <span className={css.decoration}>Klein</span>!
 					</div>
 					<div className={css.article}>
-						I'm a Webdeveloper and you can{' '}
+						I'm a <span className={css.decoration}>Webdeveloper</span> and you
+						can{' '}
 						<Link
 							to="/hire-me"
 							onClick={() => overrideMenu()}
 							className={css.link}
 							dangerouslySetInnerHTML={{ __html: `${html}&nbsp;hireMe` }}
 						/>
-						{/* <div
-						className={css.link}
-						dangerouslySetInnerHTML={{ __html: `${html}&nbsp;hireMe` }}
-						onClick={() =>
-							changeLocation({ id: 1, title: 'home', to: '/', ref: 0 })
-						}
-					/> */}
 						.
 						<p />
-						This site was proudly made with React, Vite, <br />
+						This site was <span className={css.decoration}>
+							proudly made
+						</span>{' '}
+						with React, Vite, <br />
 						PostCSS, Framer Motion and VS Code.
 						<p />
 						See the source at my{' '}

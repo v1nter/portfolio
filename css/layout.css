@@ -31,11 +31,16 @@ html {
 }
 
 .site-header {
+	/* max-height: 5rem; */
+
 	/* Signalfarbe zum Debuggen */
 	background-color: var(--temp-header-color);
 
 	/* Tatsächliche Farbe */
 	background-color: var(--secondary-background-color);
+
+	height: 15vh;
+	position: relative;
 }
 
 .site-content {
