@@ -11,7 +11,7 @@ const menuItems = [
 	{ id: 4, title: 'colorPicker', to: '/ColorPicker', ref: 2 },
 	// { id: 3, title: 'techStack', to: '/', ref: 0 },
 	{ id: 6, title: 'lorem', to: '/lorem', ref: 2 },
-	{ id: 7, title: 'ipsum', to: '/ipsum', ref: 3 },
+	{ id: 7, title: 'ipsum', to: '/ipsum', ref: 2 },
 ];
 
 let override;
