@@ -1,14 +1,19 @@
+@import '.\css\globals\queries.css';
+
 .link {
 	color: var(--accent-1);
 	text-decoration: none;
 	cursor: pointer;
 	user-select: none;
 
-	@media (orientation: landscape) {
+	@media (--large) {
 		font-size: 2rem;
 	}
-	@media (orientation: portrait) {
+	@media (--medium) {
 		font-size: 1rem;
+	}
+	@media (--small) {
+		font-size: 1.3rem;
 	}
 
 	&:hover {

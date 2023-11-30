@@ -1,7 +1,23 @@
+@import '.\css\globals\queries.css';
 .menu {
 	color: var(--primary-font-color);
 	list-style: none;
 	display: flex;
-	gap: 3rem;
-	display: fixed;
+	/* gap: 3rem; */
+	display: absolute;
+	padding-left: 0px;
+	margin-left: 0px;
+
+	@media (--large) {
+		gap: 3rem;
+	}
+	@media (--medium) {
+		gap: 2rem;
+	}
+	@media (--small) {
+		gap: 1.3rem;
+	}
+	/* @media (--tiny) {
+		gap: 1rem;
+	} */
 }

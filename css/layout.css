@@ -1,23 +1,3 @@
-body {
-	background-color: var(--debug-red);
-
-	/* width: 100vw: 
-	Verhindere Layout-Shift durch ein- und ausblenden der Scrollbar
-	
-	 	100vw: Volle Breite MIT Scrollbar
-	 	100%: Volle Breite OHNE Scrollbar
-
-		=> Verschiebe Content um die Differenz
-		*/
-
-	/* padding-left: calc(100vw - 100%); */
-	/* height: 100vh; */
-}
-
-html {
-	/* height: 100vh; */
-}
-
 .site-wrapper {
 	display: flex;
 	flex-direction: column;
@@ -31,22 +11,19 @@ html {
 }
 
 .site-header {
-	/* max-height: 5rem; */
-
 	/* Signalfarbe zum Debuggen */
 	background-color: var(--temp-header-color);
 
 	/* Tatsächliche Farbe */
 	background-color: var(--secondary-background-color);
+	container-type: inline-size;
+	container-name: head;
 
-	height: 15vh;
 	position: relative;
 }
 
 .site-content {
 	flex-grow: 1;
-	/* display: grid; */
-	/* Für ungerade Pixelwerte, die  man in rem umrechnen will: */
 	max-width: 100%;
 	width: 100%;
 	margin-inline: auto;

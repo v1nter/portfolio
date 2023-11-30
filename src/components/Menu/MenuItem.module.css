@@ -1,14 +1,20 @@
+@import '.\css\globals\queries.css';
+@import '.\src\components\Menu\Menu.module.css';
+
 .link {
 	color: var(--accent-1);
 	text-decoration: none;
 	cursor: pointer;
 	user-select: none;
 
-	@media (orientation: landscape) {
+	@media (--large) {
 		font-size: 3rem;
 	}
-	@media (orientation: portrait) {
-		font-size: 1rem;
+	@media (--medium) {
+		font-size: 2rem;
+	}
+	@media (--small) {
+		font-size: 1.3rem;
 	}
 
 	&:hover {
@@ -36,5 +42,13 @@
 	/* border-bottom: 2px solid; */
 	border-color: var(--accent-1);
 	position: absolute;
-	transform: translateY(50px);
+	@media (--large) {
+		transform: translateY(50px);
+	}
+	@media (--medium) {
+		transform: translateY(35px);
+	}
+	@media (--small) {
+		transform: translateY(20px);
+	}
 }

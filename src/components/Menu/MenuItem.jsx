@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 //* Stellt ein MenuItem dar *//
 
-const prefix = `// &#10148;`;
+const prefix = `//&nbsp;&#10148;&nbsp;`;
 
 // Animation für das Einblenden des Submenü
 
@@ -22,7 +22,7 @@ export default function MenuItem({ item, menuDispatch, allItems }) {
 		<motion.div
 			whileHover={{ scale: 1.2, transition: { duration: 0 } }}
 			className={css.link}
-			dangerouslySetInnerHTML={{ __html: `${prefix} ${item.title}` }}
+			dangerouslySetInnerHTML={{ __html: `${prefix}${item.title}` }}
 			// MenuItem benachrichtigt onClick das Menü
 			onClick={() => menuDispatch({ action: item.title, id: item.id })}
 		></motion.div>
