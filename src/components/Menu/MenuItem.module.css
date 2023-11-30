@@ -1,5 +1,6 @@
-@import '.\css\globals\queries.css';
-@import '.\src\components\Menu\Menu.module.css';
+@custom-media --large (width >= 50rem);
+@custom-media --medium (32rem < width < 50rem);
+@custom-media --small (width < 32rem);
 
 .link {
 	color: var(--accent-1);

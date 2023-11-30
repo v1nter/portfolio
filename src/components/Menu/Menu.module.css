@@ -1,9 +1,10 @@
-@import '.\css\globals\queries.css';
+@custom-media --large (width >= 50rem);
+@custom-media --medium (32rem < width < 50rem);
+@custom-media --small (width < 32rem);
 .menu {
 	color: var(--primary-font-color);
 	list-style: none;
 	display: flex;
-	/* gap: 3rem; */
 	display: absolute;
 	padding-left: 0px;
 	margin-left: 0px;
@@ -17,7 +18,4 @@
 	@media (--small) {
 		gap: 1.3rem;
 	}
-	/* @media (--tiny) {
-		gap: 1rem;
-	} */
 }
