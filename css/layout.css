@@ -19,7 +19,7 @@ body {
 	background-color: var(--temp-header-color);
 
 	/* Tatsächliche Farbe */
-	background-color: var(--secondary-background-color);
+	background-color: var(--primary-background-color);
 	container-type: inline-size;
 	container-name: head;
 
