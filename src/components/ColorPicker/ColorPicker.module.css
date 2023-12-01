@@ -123,15 +123,29 @@
 }
 
 .defaultConfigsWrapper {
-	border: solid red;
 	margin-left: 1rem;
 	margin-right: 1rem;
 	display: flex;
 	flex-direction: row;
+	flex: 1;
+	justify-content: center;
+	max-width: 20rem;
 }
 
 .DefaultConfig {
-	border: solid green;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid var(--primary-font-color);
+
+	background: linear-gradient(
+		to right,
+		var(--gradient-starting-color),
+		var(--gradient-ending-color)
+	);
+
+	/* flex-grow 1: Teile Containerplatz gleichmäßig auf  */
+	flex-grow: 1;
 }
 
 .colorButton {

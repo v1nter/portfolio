@@ -56,8 +56,6 @@ export default function ColorPicker() {
 	const [colors, setColors] = useState(startColors);
 	const [popover, setPopover] = useState([]);
 
-	console.log(defaultConfigs);
-
 	// Erzeuge die Tiles
 	const tiles = getTiles(colors, formula);
 
@@ -70,7 +68,6 @@ export default function ColorPicker() {
 		// => useEffect triggert sich nicht mehr selbst
 		if (popover.length > 0) {
 			const timer = setTimeout(() => {
-				console.log('Discarded');
 				const discardFirstElement = popover.slice(1);
 				setPopover(discardFirstElement);
 			}, 3000);
@@ -149,11 +146,56 @@ export default function ColorPicker() {
 								</div>
 							))}
 						</div>
+
+						{/* Blende die Icons für die Default-Farbschema ein */}
+
 						<div className={css.defaultConfigsWrapper}>
-							<div className={css.DefaultConfig}>Default #1</div>
-							<div className={css.DefaultConfig}>Default #2</div>
-							<div className={css.DefaultConfig}>Default #3</div>
+							{defaultConfigs.map((configs) => (
+								<div
+									className={css.DefaultConfig}
+									// Lege die Start- und Endwerte der
+									// Gradienten fest
+
+									style={{
+										'--gradient-starting-color': `rgb(${
+											getGradientStart(configs.title).find(
+												(obj) => obj.color === 'r'
+											).value
+										}, ${
+											getGradientStart(configs.title).find(
+												(obj) => obj.color === 'g'
+											).value
+										}, ${
+											getGradientStart(configs.title).find(
+												(obj) => obj.color === 'b'
+											).value
+										})`,
+										'--gradient-ending-color': `rgb(${
+											getGradientEnd(configs.title).find(
+												(obj) => obj.color === 'r'
+											).value
+										}, ${
+											getGradientEnd(configs.title).find(
+												(obj) => obj.color === 'g'
+											).value
+										}, ${
+											getGradientEnd(configs.title).find(
+												(obj) => obj.color === 'b'
+											).value
+										})`,
+									}}
+									onClick={() => {
+										setColors(changeToDefaultColors(configs.title));
+										setFormula(changeToDefaultFormula(configs.title));
+									}}
+								>
+									{configs.title}
+								</div>
+							))}
 						</div>
+
+						{/* Blende die Buttons zur manuellen Einstellung der Formel ein  */}
+
 						<div className={css.colorButtonWrapper}>
 							<div className={css.buttons}>
 								<button
@@ -275,6 +317,49 @@ function changeFormula(btn, formula, setFormula) {
 
 function copyToClipboard(r, g, b) {
 	navigator.clipboard.writeText(`rgb(${r},${g},${b})`);
+}
+
+// Beim Klick auf ein Default-Farbschema werden
+// hier aus defaultConfigs die Farben bzw. die Formel
+// für das Schema ausgelesen und zurückgegeben
+
+function changeToDefaultColors(title) {
+	const myConfig = defaultConfigs.find(
+		(defaultConfig) => defaultConfig.title === title
+	);
+
+	// console.log(myConfig.colors.find((obj) => obj.color === 'r').value);
+
+	return myConfig.colors;
+}
+
+function changeToDefaultFormula(title) {
+	const myConfig = defaultConfigs.find(
+		(defaultConfig) => defaultConfig.title === title
+	);
+
+	return myConfig.formula;
+}
+
+// Lese Endpunkte des Gradienten für Default-Configs
+
+function getGradientStart(title) {
+	// Ja, das ist die selbe Funktion wie changeToDefaultColors, aber zur
+	// lesbarkeit nochmal mit anderem Namen
+
+	const myConfig = defaultConfigs.find(
+		(defaultConfig) => defaultConfig.title === title
+	);
+
+	return myConfig.colors;
+}
+
+function getGradientEnd(title) {
+	const myConfig = defaultConfigs.find(
+		(defaultConfig) => defaultConfig.title === title
+	);
+
+	return myConfig.gradientEnd;
 }
 
 function getTiles(colors, formula) {
