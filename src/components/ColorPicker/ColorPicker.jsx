@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import css from './ColorPicker.module.css';
 import Popover from '../Popover/Popover';
 import { AnimatePresence, motion } from 'framer-motion';
+import { defaultConfigs } from './configs.js';
 
 // Prioritäten:
 // 1. Animiertes Burgermenü
@@ -54,6 +55,8 @@ export default function ColorPicker() {
 	const [formula, setFormula] = useState(startFormula);
 	const [colors, setColors] = useState(startColors);
 	const [popover, setPopover] = useState([]);
+
+	console.log(defaultConfigs);
 
 	// Erzeuge die Tiles
 	const tiles = getTiles(colors, formula);
@@ -112,71 +115,85 @@ export default function ColorPicker() {
 				Bei einer Änderung wird der State aktualisiert und dadurch
 				useEffect getriggert, welches die Kachelfarben neu berechnet */}
 					<div className={css.colorControl}>
-						{colors.map((obj) => (
-							<>
-								<label
-									key={obj.color + '-control'}
-									htmlFor={`range-${obj.color}`}
-								>
-									{obj.color}
-								</label>
-								<input
-									className={css.colorSlider}
-									type="range"
-									id={`range-${obj.color}`}
-									min="0"
-									max="255"
-									step="5"
-									value={obj.value}
-									key={obj.color + '-slider'}
-									onChange={(e) =>
-										setColors(
-											colors.map((col) =>
-												col.color === obj.color
-													? {
-															color: col.color,
-															value: parseInt(e.target.value),
-													  }
-													: { color: col.color, value: col.value }
+						<div className={css.colorSliderWrapper}>
+							{colors.map((obj) => (
+								<div className={css.colorSliders}>
+									<label
+										key={obj.color + '-control'}
+										htmlFor={`range-${obj.color}`}
+									>
+										{obj.color}
+									</label>
+									<input
+										className={css.colorSlider}
+										type="range"
+										id={`range-${obj.color}`}
+										min="0"
+										max="255"
+										step="5"
+										value={obj.value}
+										key={obj.color + '-slider'}
+										onChange={(e) =>
+											setColors(
+												colors.map((col) =>
+													col.color === obj.color
+														? {
+																color: col.color,
+																value: parseInt(e.target.value),
+														  }
+														: { color: col.color, value: col.value }
+												)
 											)
-										)
+										}
+									/>
+								</div>
+							))}
+						</div>
+						<div className={css.defaultConfigsWrapper}>
+							<div className={css.DefaultConfig}>Default #1</div>
+							<div className={css.DefaultConfig}>Default #2</div>
+							<div className={css.DefaultConfig}>Default #3</div>
+						</div>
+						<div className={css.colorButtonWrapper}>
+							<div className={css.buttons}>
+								<button
+									className={css.colorButton}
+									value={formula.find(({ color }) => color === 'r').color}
+									key={'r'}
+									onClick={(e) =>
+										changeFormula(e.target.value, formula, setFormula)
 									}
-								/>
-							</>
-						))}
+								>
+									r {+formula.find(({ color }) => color === 'r').formula}
+								</button>
+							</div>
 
-						<button
-							className={css.colorButton}
-							value={formula.find(({ color }) => color === 'r').color}
-							key={'r'}
-							onClick={(e) =>
-								changeFormula(e.target.value, formula, setFormula)
-							}
-						>
-							r {+formula.find(({ color }) => color === 'r').formula}
-						</button>
+							<div className={css.buttons}>
+								<button
+									className={css.colorButton}
+									value={formula.find(({ color }) => color === 'g').color}
+									key={'g'}
+									onClick={(e) =>
+										changeFormula(e.target.value, formula, setFormula)
+									}
+								>
+									g {+formula.find(({ color }) => color === 'g').formula}
+								</button>
+							</div>
 
-						<button
-							className={css.colorButton}
-							value={formula.find(({ color }) => color === 'g').color}
-							key={'g'}
-							onClick={(e) =>
-								changeFormula(e.target.value, formula, setFormula)
-							}
-						>
-							g {+formula.find(({ color }) => color === 'g').formula}
-						</button>
-
-						<button
-							className={css.colorButton}
-							value={formula.find(({ color }) => color === 'b').color}
-							key={'b'}
-							onClick={(e) =>
-								changeFormula(e.target.value, formula, setFormula)
-							}
-						>
-							b {+formula.find(({ color }) => color === 'b').formula}
-						</button>
+							<div className={css.buttons}>
+								<button
+									className={css.colorButton}
+									value={formula.find(({ color }) => color === 'b').color}
+									key={'b'}
+									onClick={(e) =>
+										changeFormula(e.target.value, formula, setFormula)
+									}
+								>
+									b {+formula.find(({ color }) => color === 'b').formula}
+								</button>
+							</div>
+						</div>
 					</div>
 				</div>
 

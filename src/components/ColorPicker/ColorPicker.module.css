@@ -1,3 +1,7 @@
+@custom-media --large (width >= 50rem);
+@custom-media --medium (32rem < width < 50rem);
+@custom-media --small (width < 32rem);
+
 .colorBox {
 	padding-left: 1rem;
 	padding-top: 1rem;
@@ -51,33 +55,110 @@
 	color: rgb(255, 255, 255);
 	padding-left: 1rem;
 	padding-top: 1rem;
+	display: flex;
+	flex-direction: row;
+
+	@media (--large) {
+		flex-direction: row;
+	}
+
+	@media (--medium) {
+		flex-direction: column;
+	}
+
+	@media (--small) {
+		flex-direction: column;
+	}
 }
 
-.colorSlider {
-	appearance: slider-vertical;
+.colorSliderWrapper {
+	display: flex;
+	flex-direction: column;
+
+	@media (--large) {
+		width: 20%;
+	}
+
+	@media (--medium) {
+		width: 100%;
+		margin: auto;
+	}
+
+	@media (--small) {
+		width: 100%;
+		margin: auto;
+	}
+}
+
+.colorSliders {
+	display: flex;
+	flex-direction: row;
 }
 
 .colorLabel {
 	width: 100px;
 }
 
+.colorButtonWrapper {
+	display: flex;
+	gap: 1rem;
+	/* border: solid; */
+
+	@media (--large) {
+		flex-direction: column;
+	}
+
+	@media (--medium) {
+		flex-direction: row;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+		width: 100%;
+	}
+
+	@media (--small) {
+		flex-direction: row;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+}
+
+.defaultConfigsWrapper {
+	border: solid red;
+	margin-left: 1rem;
+	margin-right: 1rem;
+	display: flex;
+	flex-direction: row;
+}
+
+.DefaultConfig {
+	border: solid green;
+}
+
 .colorButton {
 	width: 100px;
 }
 
-.colorSlider {
-	width: 300px;
-	background: transparent;
-}
-/*###################################*/
-/*###########Responsive Range########*/
-/*###################################*/
-/*##############Core Style###########*/
+/* Definiere die Slider */
+
+/* 1. Mache die Default-Slider für alle Browser unsichtbar */
 
 .colorSlider {
+	background: transparent;
+	appearance: slider-vertical;
 	-webkit-appearance: none;
 	-appearance: none;
-	width: 100px;
+
+	@media (--large) {
+		width: 100%;
+	}
+
+	@media (--medium) {
+		width: 100%;
+	}
+
+	@media (--small) {
+		width: 100%;
+	}
 }
 
 .colorSlider::-webkit-slider-thumb {
@@ -93,18 +174,19 @@
 	border-color: transparent;
 	color: transparent;
 }
-/*#############Thumb##############*/
+
+/* 2. Definiere den Thumb  */
 
 .colorSlider::-webkit-slider-thumb {
 	-webkit-appearance: none;
-	height: 10px;
-	width: 10px;
-	border-radius: 100px;
-	background: var(--primary-font-color);
+	height: 20px;
+	width: 8px;
+	/* border: 1px solid var(--secondary-background-color); */
+	background: var(--accent-2);
 	cursor: pointer;
 
 	/* Formel: (Trackheight (px) / 2) - (Thurmbheight (px) / 2) */
-	margin-top: -1px;
+	margin-top: -8px;
 }
 
 .colorSlider::-moz-range-thumb {
@@ -120,26 +202,27 @@
 	background: #555;
 	cursor: pointer;
 }
-/*#############Track##############*/
+
+/* 3. Definiere den Track  */
 
 .colorSlider::-webkit-slider-runnable-track {
 	width: 100px;
-	height: 8px;
+	height: 4px;
 	cursor: pointer;
-	background: var(--active-link-color);
-	border-radius: 100px;
+	background: var(--primary-font-color);
+	/* border-radius: 100px; */
 	margin: 1rem;
 }
 
 .colorSlider:active::-webkit-slider-runnable-track {
-	background: var(--active-link-color);
+	background: var(--primary-font-color);
 }
 
 .colorSlider::-moz-range-track {
 	width: 100px;
 	height: 5px;
 	cursor: pointer;
-	background: #ccc;
+	background: var(--primary-font-color);
 }
 
 .colorSlider::-ms-track {
