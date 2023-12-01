@@ -55,4 +55,42 @@ export const defaultConfigs = [
 			{ color: 'b', value: 255 },
 		],
 	},
+
+	{
+		title: 'Autumn',
+		colors: [
+			{ color: 'r', value: 255 },
+			{ color: 'g', value: 125 },
+			{ color: 'b', value: 0 },
+		],
+		formula: [
+			{ color: 'r', formula: -1 },
+			{ color: 'g', formula: -1 },
+			{ color: 'b', formula: -1 },
+		],
+		gradientEnd: [
+			{ color: 'r', value: 0 },
+			{ color: 'g', value: 0 },
+			{ color: 'b', value: 0 },
+		],
+	},
+
+	{
+		title: 'Ocean',
+		colors: [
+			{ color: 'r', value: 0 },
+			{ color: 'g', value: 255 },
+			{ color: 'b', value: 0 },
+		],
+		formula: [
+			{ color: 'r', formula: 0 },
+			{ color: 'g', formula: -1 },
+			{ color: 'b', formula: 1 },
+		],
+		gradientEnd: [
+			{ color: 'r', value: 0 },
+			{ color: 'g', value: 0 },
+			{ color: 'b', value: 255 },
+		],
+	},
 ];

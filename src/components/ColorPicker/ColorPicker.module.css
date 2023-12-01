@@ -60,6 +60,7 @@
 
 	@media (--large) {
 		flex-direction: row;
+		padding-bottom: 1rem;
 	}
 
 	@media (--medium) {
@@ -129,7 +130,18 @@
 	flex-direction: row;
 	flex: 1;
 	justify-content: center;
-	max-width: 20rem;
+
+	@media (--large) {
+		max-width: 35rem;
+	}
+
+	@media (--medium) {
+		max-width: 20rem;
+	}
+
+	@media (--small) {
+		max-width: 20rem;
+	}
 }
 
 .DefaultConfig {
@@ -138,6 +150,19 @@
 	justify-content: center;
 	align-items: center;
 	border: 2px solid var(--primary-font-color);
+	border-radius: 25px;
+
+	@media (--large) {
+		margin-left: 1rem;
+	}
+
+	@media (--medium) {
+		margin-left: 0rem;
+	}
+
+	@media (--small) {
+		margin-left: 0rem;
+	}
 
 	background: linear-gradient(
 		to right,
