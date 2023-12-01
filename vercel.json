@@ -1,3 +1,7 @@
 {
-	"rewrites": [{ "source": "/(.*)", "destination": "/" }]
+	"rewrites": [
+		{ "source": "/(.*)", "destination": "/" },
+		{ "source": "/ColorPicker", "destination": "/ColorPicker" },
+		{ "source": "/hire-me", "destination": "/hire-me" }
+	]
 }
