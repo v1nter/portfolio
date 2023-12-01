@@ -55,6 +55,7 @@ export default function ColorPicker() {
 	const [formula, setFormula] = useState(startFormula);
 	const [colors, setColors] = useState(startColors);
 	const [popover, setPopover] = useState([]);
+	const [showAdvanced, setShowAdvanced] = useState(false);
 
 	// Erzeuge die Tiles
 	const tiles = getTiles(colors, formula);
@@ -194,47 +195,54 @@ export default function ColorPicker() {
 							))}
 						</div>
 
-						{/* Blende die Buttons zur manuellen Einstellung der Formel ein  */}
-
-						<div className={css.colorButtonWrapper}>
-							<div className={css.buttons}>
-								<button
-									className={css.colorButton}
-									value={formula.find(({ color }) => color === 'r').color}
-									key={'r'}
-									onClick={(e) =>
-										changeFormula(e.target.value, formula, setFormula)
-									}
-								>
-									r {+formula.find(({ color }) => color === 'r').formula}
-								</button>
+						<div className={css.advancedwrapper}>
+							<div className={css.advanced}>
+								<div onClick={() => setShowAdvanced(!showAdvanced)}>{`>`}</div>
 							</div>
+							{/* Blende die Buttons zur manuellen Einstellung der Formel ein  */}
 
-							<div className={css.buttons}>
-								<button
-									className={css.colorButton}
-									value={formula.find(({ color }) => color === 'g').color}
-									key={'g'}
-									onClick={(e) =>
-										changeFormula(e.target.value, formula, setFormula)
-									}
-								>
-									g {+formula.find(({ color }) => color === 'g').formula}
-								</button>
-							</div>
+							{showAdvanced && (
+								<div className={css.colorButtonWrapper}>
+									<div className={css.buttons}>
+										<button
+											className={css.colorButton}
+											value={formula.find(({ color }) => color === 'r').color}
+											key={'r'}
+											onClick={(e) =>
+												changeFormula(e.target.value, formula, setFormula)
+											}
+										>
+											r {+formula.find(({ color }) => color === 'r').formula}
+										</button>
+									</div>
 
-							<div className={css.buttons}>
-								<button
-									className={css.colorButton}
-									value={formula.find(({ color }) => color === 'b').color}
-									key={'b'}
-									onClick={(e) =>
-										changeFormula(e.target.value, formula, setFormula)
-									}
-								>
-									b {+formula.find(({ color }) => color === 'b').formula}
-								</button>
-							</div>
+									<div className={css.buttons}>
+										<button
+											className={css.colorButton}
+											value={formula.find(({ color }) => color === 'g').color}
+											key={'g'}
+											onClick={(e) =>
+												changeFormula(e.target.value, formula, setFormula)
+											}
+										>
+											g {+formula.find(({ color }) => color === 'g').formula}
+										</button>
+									</div>
+
+									<div className={css.buttons}>
+										<button
+											className={css.colorButton}
+											value={formula.find(({ color }) => color === 'b').color}
+											key={'b'}
+											onClick={(e) =>
+												changeFormula(e.target.value, formula, setFormula)
+											}
+										>
+											b {+formula.find(({ color }) => color === 'b').formula}
+										</button>
+									</div>
+								</div>
+							)}
 						</div>
 					</div>
 				</div>
