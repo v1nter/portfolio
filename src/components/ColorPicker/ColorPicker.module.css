@@ -244,8 +244,9 @@
 	-webkit-appearance: none;
 	height: 20px;
 	width: 8px;
-	/* border: 1px solid var(--secondary-background-color); */
-	background: var(--accent-2);
+	border: 1px solid var(--secondary-background-color);
+	/* background: var(--secondary-background-color); */
+	background: var(--primary-font-color);
 	cursor: pointer;
 
 	/* Formel: (Trackheight (px) / 2) - (Thurmbheight (px) / 2) */
