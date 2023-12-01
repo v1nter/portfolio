@@ -134,6 +134,7 @@
 
 .DefaultConfig {
 	display: flex;
+	flex: 1;
 	justify-content: center;
 	align-items: center;
 	border: 2px solid var(--primary-font-color);
